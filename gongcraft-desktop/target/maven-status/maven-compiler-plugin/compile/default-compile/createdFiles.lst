@@ -1,0 +1,11 @@
+com\gongcraft\GongCraftApplication.class
+com\gongcraft\ui\panels\CustomerPanel.class
+com\gongcraft\ui\panels\DashboardPanel.class
+com\gongcraft\ui\panels\PaymentPanel.class
+com\gongcraft\ui\MainWindow.class
+com\gongcraft\ui\panels\OrderPanel.class
+com\gongcraft\entity\Customer.class
+com\gongcraft\ui\panels\ProductionPanel.class
+com\gongcraft\ui\panels\SettingsPanel.class
+com\gongcraft\ui\panels\ProductPanel.class
+com\gongcraft\ui\panels\ReportPanel.class

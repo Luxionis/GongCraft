@@ -33,9 +33,26 @@ public class MainWindow {
             ProductionPanel productionPanel,
             PaymentPanel paymentPanel,
             ReportPanel reportPanel,
-            SettingsPanel settingsPanel
-    ) {
-        initializeUI(dashboardPanel, customerPanel, productPanel, orderPanel, productionPanel, paymentPanel, reportPanel, settingsPanel);
+            SettingsPanel settingsPanel) {
+        // IMPORTANT:
+        // Spring may instantiate this bean before JavaFX Toolkit is initialized.
+        // So we do NOT build MenuBar/TabPane/Controls here.
+        root.setStyle("-fx-background-color: #f0f0f0;");
+    }
+
+    // JavaFX UI building must happen after Toolkit init.
+    // We'll call it manually from GongCraftApplication.start(...).
+    public void buildUI(
+            DashboardPanel dashboardPanel,
+            CustomerPanel customerPanel,
+            ProductPanel productPanel,
+            OrderPanel orderPanel,
+            ProductionPanel productionPanel,
+            PaymentPanel paymentPanel,
+            ReportPanel reportPanel,
+            SettingsPanel settingsPanel) {
+        initializeUI(dashboardPanel, customerPanel, productPanel, orderPanel, productionPanel, paymentPanel,
+                reportPanel, settingsPanel);
     }
 
     private void initializeUI(
@@ -46,8 +63,7 @@ public class MainWindow {
             ProductionPanel productionPanel,
             PaymentPanel paymentPanel,
             ReportPanel reportPanel,
-            SettingsPanel settingsPanel
-    ) {
+            SettingsPanel settingsPanel) {
         root.setStyle("-fx-background-color: #f0f0f0;");
 
         root.setTop(createMenuBar());
@@ -64,7 +80,8 @@ public class MainWindow {
         Tab reportsTab = new Tab("Reports", reportPanel.getRoot());
         Tab settingsTab = new Tab("Settings", settingsPanel.getRoot());
 
-        tabs.getTabs().addAll(dashboardTab, customersTab, productsTab, ordersTab, productionTab, paymentsTab, reportsTab, settingsTab);
+        tabs.getTabs().addAll(dashboardTab, customersTab, productsTab, ordersTab, productionTab, paymentsTab,
+                reportsTab, settingsTab);
         root.setCenter(tabs);
 
         root.setBottom(createStatusBar());
@@ -104,4 +121,3 @@ public class MainWindow {
         return root;
     }
 }
-

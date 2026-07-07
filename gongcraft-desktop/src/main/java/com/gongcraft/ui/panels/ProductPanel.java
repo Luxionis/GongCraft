@@ -9,15 +9,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductPanel {
 
-    private final VBox root = new VBox(10);
+    private VBox root;
 
     public ProductPanel() {
+        // Defer JavaFX node creation until JavaFX toolkit is ready.
+    }
+
+    @jakarta.annotation.PostConstruct
+    private void init() {
+        root = new VBox();
         root.setPadding(new Insets(15));
-        root.getChildren().add(new Label("Products (placeholder)"));
     }
 
     public Parent getRoot() {
         return root;
     }
 }
-
